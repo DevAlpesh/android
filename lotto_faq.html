@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - USA Lottery Results</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        header {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+        
+        .content {
+            padding: 40px 30px;
+        }
+        
+        .search-box {
+            background: #f0f8ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .search-box input {
+            width: 100%;
+            max-width: 500px;
+            padding: 12px 20px;
+            font-size: 16px;
+            border: 2px solid #4facfe;
+            border-radius: 25px;
+            outline: none;
+        }
+        
+        .category {
+            margin-bottom: 40px;
+        }
+        
+        .category-header {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .category-header h2 {
+            margin: 0;
+            font-size: 1.5em;
+            flex: 1;
+        }
+        
+        .category-icon {
+            font-size: 1.5em;
+            margin-right: 15px;
+        }
+        
+        .faq-item {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-item:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .faq-question {
+            padding: 20px;
+            background: #fafafa;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1em;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+        
+        .faq-question:hover {
+            background: #f0f0f0;
+        }
+        
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5em;
+            color: #4facfe;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-question.active::after {
+            content: '−';
+            transform: rotate(180deg);
+        }
+        
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-answer.active {
+            padding: 20px;
+            max-height: 1000px;
+        }
+        
+        .faq-answer p {
+            margin-bottom: 12px;
+        }
+        
+        .faq-answer ul {
+            margin-left: 20px;
+            margin-bottom: 12px;
+        }
+        
+        .faq-answer li {
+            margin-bottom: 8px;
+        }
+        
+        .highlight-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .info-box {
+            background: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .warning-box {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .success-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .contact-cta {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .contact-cta h2 {
+            color: white;
+            margin-bottom: 15px;
+        }
+        
+        .contact-cta a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border: 2px solid white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            display: inline-block;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-cta a:hover {
+            background: white;
+            color: #667eea;
+        }
+        
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+            
+            .content {
+                padding: 25px 20px;
+            }
+            
+            .faq-question {
+                font-size: 1em;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Frequently Asked Questions</h1>
+            <p>Everything you need to know about USA Lottery Results</p>
+        </header>
+        
+        <div class="content">
+            <div class="search-box">
+                <p style="margin-bottom: 10px; color: #666;">Have a question? Search our FAQ:</p>
+                <input type="text" id="searchInput" placeholder="Search for answers..." onkeyup="searchFAQ()">
+            </div>
+            
+            <!-- General Questions -->
+            <div class="category">
+                <div class="category-header">
+                    <span class="category-icon">📱</span>
+                    <h2>General Questions</h2>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleAnswer(this)">
+                        What is USA Lottery Results?
+                    </div>
+                    <div class="faq-answer">
+                        <p>USA Lottery Results is a free mobile application that provides up-to-date lottery results from various state lotteries across the United States. Our app helps you:</p>
+                        <ul>
+                            <li>Check current lottery winning numbers</li>
+                            <li>View historical lottery results</li>
+                            <li>Get notifications about upcoming draws</li>
+                            <li>Track jackpot amounts</li>
+                            <li>Scan your tickets (where available)</li>
+                            <li>Save your favorite numbers</li>
+                        </ul>
+                        <div class="info-box">
+                            <strong>Note:</strong> We provide information only. We do not sell lottery tickets or conduct lottery games.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleAnswer(this)">
+                        Is the app really free?
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! The core features of USA Lottery Results are completely free to use. The app is ad-supported, which means we display advertisements to keep the service free for all users.</p>
+                        <p>We may offer optional premium features in the future that require payment, but the basic lottery results checking functionality will always remain free.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleAnswer(this)">
+                        Which lotteries are supported?
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our app covers major state lotteries across the United States, including:</p>
+                        <ul>
+                            <li><strong>Multi-State Games:</strong> Powerball, Mega Millions</li>
+                            <li><strong>State-Specific Lotteries:</strong> California SuperLotto Plus, New York Lotto, Florida Lotto, Texas Lotto, and many more</li>
+                            <li><strong>Daily Games:</strong> Pick 3, Pick 4, Cash 5, and various daily draw games</li>
+                            <li><strong>Instant Games:</strong> Information about scratch-off prizes</li>
+                        </ul>
+                        <p>The specific lotteries available may vary by state. Check the app for a complete list of supported lotteries in your area.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleAnswer(this)">
+                        Are you affiliated with official state lotteries?
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>No.</strong> USA Lottery Results is an independent application and is NOT affiliated with, endorsed by, or connected to any official state lottery organization or commission.</p>
+                        <div class="warning-box">
+                            <strong>Important:</strong> Always verify winning numbers with official state lottery sources before claiming any prize.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Using the App -->
+            <div class="category">
+                <div class="category-header">
+                    <span class="category-icon">🎯</span>
+                    <h2>Using the App</h2>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleAnswer(this)">
+                        How do I check lottery results?
+                    </div>
+                    <div class="faq-answer">
+                        <p>Checking lottery results is simple:</p>
+                        <ol>
+                            <li>Open the USA Lottery Results app</li>
+                            <li>Select your state or lottery game from the main menu</li>
+                            <li>View the latest winning numbers displayed</li>
+                            <li>Scroll down to see previous draw results</li>
+                        </ol>
+                        <p>Results are typically updated within minutes of the official drawing.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleAnswer(this)">
+                        How do I scan my lottery ticket?
+                    </div>
+                    <div class="faq-answer">
+                        <p>To use the ticket scanning feature:</p>
+                        <ol>
+                            <li>Tap the "Scan Ticket" button in the app</li>
+                            <li>Allow camera permissions if prompted</li>
+                            <li>Hold your ticket flat and steady within the frame</li>
+                            <li>The app will automatically scan and check your numbers</li>
+                            <li>Results will display immediately, showing any matches</li>
+                        </ol>
+                        <div class="highlight-box">
+                            <strong>Tip:</strong> Make sure your ticket is in good condition and well-lit for best scanning results.
+                        </div>
+                        <div class="warning-box">
+                            <strong>Important:</strong> The scanner is a convenience feature. Always manually verify your ticket with official sources if you have a potential winner.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleAnswer(this)">
+                        Can I save my favorite numbers?
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! You can save your favorite numbers for quick checking:</p>
+                        <ol>
+                            <li>Go to the "My Numbers" section</li>
+                            <li>Tap "Add Numbers"</li>
+                            <li>Select the lottery game</li>
+                            <li>Enter your numbers</li>
+                            <li>Save them with a custom name</li>
+                        </ol>
+                        <p>The app will automatically check your saved numbers against each new drawing and notify you of any matches!</p>
+                        <div class="info-box">
+                            <strong>Privacy Note:</strong> Your saved numbers are stored locally on your device only and are not transmitted to our servers.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleAnswer(this)">
+                        How do I set up notifications?
+                    </div>
+                    <div class="faq-answer">
+                        <p>To receive lottery notifications:</p>
+                        <ol>
+                            <li>Open the app and go to Settings</li>
+                            <li>Tap "Notifications"</li>
+                            <li>Enable notifications for your desired lotteries</li>
+                            <li>Choose what types of alerts you want:
+                                <ul>
+                                    <li>Drawing reminders (before the draw)</li>
+                                    <li>Results posted (when numbers are available)</li>
+                                    <li>Jackpot alerts (when jackpots reach certain amounts)</li>
+                                </ul>
+                            </li>
+                            <li>Make sure notifications are enabled in your device settings</li>
+                        </ol>
+                        <p>You can customize notification timing and frequency to suit your preferences.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleAnswer(this)">
+                        Can I view past lottery results?
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! Our app maintains a comprehensive archive of historical lottery results. You can:</p>
+                        <ul>
+                            <li>View results from previous weeks, months, or years</li>
+                            <li>Search for results by specific dates</li>
+                            <li>See winning numbers and prize amounts</li>
+                            <li>Track jackpot history and trends</li>
+                        </ul>
+                        <p>To access historical data, select any lottery and scroll down or use the date selector to view past draws.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Results and Accuracy -->
+            <div class="category">
+                <div class="category-header">
+                    <span class="category-icon">✅</span>
+                    <h2>Results and Accuracy</h2>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleAnswer(this)">
+                        How accurate are the lottery results?
+                    </div>
+                    <div class="faq-answer">
+                        <p>We strive to provide the most accurate and up-to-date lottery results possible. Our data is sourced from reliable lottery information providers and updated regularly.</p>
+                        <div class="warning-box">
+                            <strong>Important Disclaimer:</strong> While we make every effort to ensure accuracy, we cannot guarantee that the results displayed are 100% correct. Technical issues, data delays, or human error may occasionally occur.
+                            <p style="margin-top: 10px;"><strong>ALWAYS verify winning numbers with your official state lottery before claiming any prize.</strong></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleAnswer(this)">
+                        When are lottery results updated?
+                    </div>
+                    <div class="faq-answer">
+                        <p>We typically update lottery results within minutes after the official drawing concludes. Update times vary by lottery:</p>
+                        <ul>
+                            <li><strong>Powerball & Mega Millions:</strong> Usually within 5-10 minutes after the draw</li>
+                            <li><strong>State Daily Games:</strong> Within 10-30 minutes after official results are posted</li>
+                            <li><strong>Other State Lotteries:</strong> As soon as official data becomes available</li>
+                        </ul>
+                        <p>If results appear delayed, you can pull down to refresh the app or check back shortly.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleAnswer(this)">
+                        What should I do if I find incorrect results?
+                    </div>
+                    <div class="faq-answer">
+                        <p>If you believe you've found incorrect information in the app:</p>
+                        <ol>
+                            <li>First, verify the correct results on the official state lottery website</li>
+                            <li>Take a screenshot of the error in our app</li>
+                            <li>Contact our support team at <a href="mailto:support@usalotteryresults.com">support@usalotteryresults.com</a></li>
+                            <li>Include the lottery name, draw date, and description of the issue</li>
+                        </ol>
+                        <p>We investigate all reported errors promptly and update the information as quickly as possible.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleAnswer(this)">
+                        Where do you get your lottery data?
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our lottery data is obtained from:</p>
+                        <ul>
+                            <li>Official state lottery websites and APIs</li>
+                            <li>Licensed lottery data providers</li>
+                            <li>Publicly available lottery information sources</li>
+                        </ul>
+                        <p>We aggregate this information to provide a convenient, centralized source for lottery results across multiple states.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Prizes and Claims -->
+            <div class="category">
+                <div class="category-header">
+                    <span class="category-icon">💰</span>
+                    <h2>Prizes and Claims</h2>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleAnswer(this)">
+                        I think I won! What should I do?
+                    </div>
+                    <div class="faq-answer">
+                        <div class="success-box">
+                            <strong>Congratulations on your potential win!</strong> Follow these important steps:
+                        </div>
+                        <ol>
+                            <li><strong>Stay Calm and Secure Your Ticket:</strong>
+                                <ul>
+                                    <li>Sign the back of your ticket immediately</li>
+                                    <li>Take clear photos of both sides</li>
+                                    <li>Store it in a safe place</li>
+                                </ul>
+                            </li>
+                            <li><strong>Verify Your Numbers:</strong>
+                                <ul>
+                                    <li>Double-check numbers on the official state lottery website</li>
+                                    <li>Confirm the draw date matches your ticket</li>
+                                    <li>Do NOT rely solely on our app for verification</li>
+                                </ul>
+                            </li>
+                            <li><strong>Check Prize Amount:</strong>
+                                <ul>
+                                    <li>Visit the official lottery website to see prize tiers</li>
+                                    <li>Determine your prize amount and claim requirements</li>
+                                </ul>
+                            </li>
+                            <li><strong>Claim Your Prize:</strong>
+                                <ul>
+                                    <li>Small prizes: Often can be claimed at retailers</li>
+                                    <li>Large prizes: Must be claimed at lottery offices</li>
+                                    <li>Follow official claim procedures for your state</li>
+                                </ul>
+                            </li>
+                            <li><strong>Consider Professional Advice:</strong>
+                                <ul>
+                                    <li>For large prizes, consult a financial advisor</li>
+                                    <li>Consider tax implications</li>
+                                    <li>Keep your win private until claimed</li>
+                                </ul>
+                            </li>
+                        </ol>
+                        <div class="warning-box">
+                            <strong>Time Limits:</strong> Most lottery prizes must be claimed within 180 days of the drawing. Check your state's specific rules!
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleAnswer(this)">
+                        Can I claim my prize through your app?
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>No.</strong> We do not facilitate prize claims in any way. USA Lottery Results is an informational app only.</p>
+                        <p>To claim lottery prizes, you must:</p>
+                        <ul>
+                            <li>Contact your official state lottery commission</li>
+                            <li>Visit an authorized lottery retailer (for smaller prizes)</li>
+                            <li>Go to a lottery district office (for larger prizes)</li>
+                            <li>Follow the claim procedures outlined by your state lottery</li>
+                        </ul>
+                        <p>Each state has specific rules and requirements for prize claims. Visit your state's official lottery website for details.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleAnswer(this)">
+                        How much time do I have to claim a prize?
+                    </div>
+                    <div class="faq-answer">
+                        <p>Prize claim periods vary by state, but common timeframes are:</p>
+                        <ul>
+                            <li><strong>Most States:</strong> 180 days (approximately 6 months)</li>
+                            <li><strong>Some States:</strong> 90 days or 1 year</li>
+                            <li><strong>Specific Games:</strong> May have different deadlines</li>
+                        </ul>
+                        <div class="warning-box">
+                            <strong>Don't Wait!</strong> Claim your prize as soon as possible. Unclaimed prizes are forfeited after the deadline and often go to education or other state programs.
+                        </div>
+                        <p>Check your specific state lottery's website for exact claim periods.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleAnswer(this)">
+                        Can you help me buy lottery tickets?
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>No.</strong> We do not sell lottery tickets, provide ticket purchasing services, or facilitate lottery games in any way.</p>
+                        <p>To purchase lottery tickets:</p>
+                        <ul>
+                            <li>Visit authorized lottery retailers in your state</li>
+                            <li>Use your state's official lottery mobile app (if available)</li>
+                            <li>Visit official lottery websites that offer online ticket sales</li>
+                        </ul>
+                        <div class="info-box">
+                            <strong>Be Aware:</strong> Only purchase tickets from authorized sources. Beware of scams or unauthorized ticket resellers.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Technical Issues -->
+            <div class="category">
+                <div class="category-header">
+                    <span class="category-icon">🔧</span>
+                    <h2>Technical Issues</h2>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleAnswer(this)">
+                        The app isn't working properly. What should I do?
+                    </div>
+                    <div class="faq-answer">
+                        <p>Try these troubleshooting steps:</p>
+                        <ol>
+                            <li><strong>Restart the App:</strong> Close completely and reopen</li>
+                            <li><strong>Check Your Connection:</strong> Ensure you have a stable internet connection</li>
+                            <li><strong>Update the App:</strong> Go to your app store and check for updates</li>
+                            <li><strong>Clear Cache:</strong> 
+                                <ul>
+                                    <li>Android: Settings → Apps → USA Lottery Results → Clear Cache</li>
+                                    <li>iOS: Uninstall and reinstall the app</li>
+                                </ul>
+                            </li>
+                            <li><strong>Restart Your Device:</strong> Sometimes a simple restart helps</li>
+                            <li><strong>Check Device Compatibility:</strong> Make sure your OS is up to date</li>
+                        </ol>
+                        <p>If problems persist, contact support with details about your device and the issue.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleAnswer(this)">
+                        Why am I not receiving notifications?
+                    </div>
+                    <div class="faq-answer">
+                        <p>If notifications aren't working, check these settings:</p>
+                        <ol>
+                            <li><strong>In the App:</strong>
+                                <ul>
+                                    <li>Go to Settings → Notifications</li>
+                                    <li>Ensure notifications are enabled for your chosen lotteries</li>
+                                </ul>
+                            </li>
+                            <li><strong>Device Settings:</strong>
+                                <ul>
+                                    <li><strong>Android:</strong> Settings → Apps → USA Lottery Results → Notifications → Allow</li>
+                                    <li><strong>iOS:</strong> Settings → Notifications → USA Lottery Results → Allow Notifications</li>
+                                </ul>
+                            </li>
+                            <li><strong>Battery Optimization:</strong>
+                                <ul>
+                                    <li>Make sure the app isn't being restricted by battery saver modes</li>
+                                    <li>Add the app to exclusion list if needed</li>
+                                </ul>
+                            </li>
+                            <li><strong>Internet Connection:</strong> Notifications require an active connection</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleAnswer(this)">
+                        The app keeps crashing. How can I fix this?
+                    </div>
+                    <div class="faq-answer">
+                        <p>If you're experiencing crashes:</p>
+                        <ol>
+                            <li>Make sure you have the latest version of the app</li>
+                            <li>Ensure your device OS is updated</li>
+                            <li>Free up device storage space (crashes often occur when storage is low)</li>
+                            <li>Clear the app cache and data</li>
+                            <li>Uninstall and reinstall the app</li>
+                            <li>Check if other apps are also crashing (may be a device issue)</li>
+                        </ol>
+                        <p>If none of these work, please contact support and provide:</p>
+                        <ul>
+                            <li>Your device model and OS version</li>
+                            <li>When the crashes occur (specific actions?)</li>
+                            <li>Screenshots of any error messages</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleAnswer(this)">
+                        What are the device requirements?
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>Minimum Requirements:</strong></p>
+                        <ul>
+                            <li><strong>Android:</strong> Version 7.0 (Nougat) or higher</li>
+                            <li><strong>iOS:</strong> Version 13.0 or higher</li>
+                            <li><strong>Storage:</strong> At least 50 MB of free space</li>
+                            <li><strong>Internet:</strong> WiFi or cellular data connection required</li>
+                            <li><strong>Camera:</strong> Required for ticket scanning feature (optional)</li>
+                        </ul>
+                        <p><strong>Recommended:</strong></p>
+                        <ul>
+                            <li>Android 9.0 or iOS 14.0 or higher for optimal performance</li>
+                            <li>At least 2 GB RAM</li>
+                            <li>Stable internet connection for real-time updates</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Privacy and Security -->
+            <div class="category">
+                <div class="category-header">
+                    <span class="category-icon">🔒</span>
+                    <h2>Privacy and Security</h2>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleAnswer(this)">
+                        Is my personal information safe?
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we take your privacy and security seriously:</p>
+                        <ul>
+                            <li>We don't require personal information to use the app</li>
+                            <li>Your saved numbers are stored locally on your device only</li>
+                            <li>We use industry-standard encryption for data transmission</li>
+                            <li>We don't sell your data to third parties</li>
+                            <li>All data practices are detailed in our Privacy Policy</li>
+                        </ul>
+                        <p>For complete details, please review our <a href="privacy-policy.html">Privacy Policy</a>.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleAnswer(this)">
+                        Do I need to create an account?
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>No.</strong> You can use all the core features of USA Lottery Results without creating an account or providing any personal information.</p>
+                        <p>The app works immediately after installation with no registration required.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleAnswer(this)">
+                        What data do you collect?
+                    </div>
+                    <div class="faq-answer">
+                        <p>We collect minimal data necessary to provide the service:</p>
+                        <ul>
+                            <li><strong>Usage Data:</strong> Which features you use, how often, etc.</li>
+                            <li><strong>Device Info:</strong> Device model, OS version, app version</li>
+                            <li><strong>Location:</strong> Approximate location (city/state level only) to show relevant lotteries</li>
+                            <li><strong>Analytics:</strong> Crash reports and performance data to improve the app</li>
+                        </ul>
+                        <p>We do NOT collect:</p>
+                        <ul>
+                            <li>Your name, email, or contact information</li>
+                            <li>Precise GPS location</li>
+                            <li>Financial information</li>
+                            <li>Your saved ticket numbers (stored locally only)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleAnswer(this)">
+                        How do I delete my data?
+                    </div>
+                    <div class="faq-answer">
+                        <p>To remove all your data:</p>
+                        <ol>
+                            <li><strong>Local Data:</strong> Simply uninstall the app from your device</li>
+                            <li><strong>Analytics Data:</strong> Email us at <a href="mailto:privacy@usalotteryresults.com">privacy@usalotteryresults.com</a> to request deletion</li>
+                        </ol>
+                        <p>Most user data is stored locally on your device and is automatically deleted when you uninstall the app.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Ads and Purchases -->
+            <div class="category">
+                <div class="category-header">
+                    <span class="category-icon">💳</span>
+                    <h2>Ads and Purchases</h2>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleAnswer(this)">
+                        Why do I see advertisements?
+                    </div>
+                    <div class="faq-answer">
+                        <p>USA Lottery Results is a free app supported by advertising. Ads allow us to:</p>
+                        <ul>
+                            <li>Keep the app completely free for all users</li>
+                            <li>Cover server costs and data fees</li>
+                            <li>Continue developing new features</li>
+                            <li>Provide regular updates and support</li>
+                        </ul>
+                        <p>We carefully select ad partners and limit ad frequency to maintain a good user experience.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleAnswer(this)">
+                        Can I remove ads?
+                    </div>
+                    <div class="faq-answer">
+                        <p>We may offer an ad-free premium version in the future. Currently, ads are part of the free experience.</p>
+                        <p>You can reduce personalized ads by:</p>
+                        <ul>
+                            <li><strong>Android:</strong> Settings → Google → Ads → Opt out of Ads Personalization</li>
+                            <li><strong>iOS:</strong> Settings → Privacy → Tracking → Toggle off tracking</li>
+                        </ul>
+                        <p>This won't remove ads but makes them less personalized.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleAnswer(this)">
+                        Are there any in-app purchases?
+                    </div>
+                    <div class="faq-answer">
+                        <p>Currently, all features are free. We may introduce optional premium features in the future, such as:</p>
+                        <ul>
+                            <li>Ad-free experience</li>
+                            <li>Advanced statistics and analytics</li>
+                            <li>Extended historical data</li>
+                            <li>Additional notification options</li>
+                        </ul>
+                        <p>The core lottery results checking will always remain free.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Support and Contact -->
+            <div class="category">
+                <div class="category-header">
+                    <span class="category-icon">💬</span>
+                    <h2>Support and Contact</h2>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleAnswer(this)">
+                        How do I contact support?
+                    </div>
+                    <div class="faq-answer">
+                        <p>You can reach our support team at:</p>
+                        <p><strong>Email:</strong> <a href="mailto:support@usalotteryresults.com">support@usalotteryresults.com</a></p>
+                        <p><strong>Response Time:</strong> We typically respond within 48 hours during business days</p>
+                        <p>When contacting support, please include:</p>
+                        <ul>
+                            <li>Your device model and OS version</li>
+                            <li>App version (found in Settings)</li>
+                            <li>Detailed description of the issue</li>
+                            <li>Screenshots if applicable</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleAnswer(this)">
+                        How can I suggest a new feature?
+                    </div>
+                    <div class="faq-answer">
+                        <p>We love hearing from our users! To suggest new features:</p>
+                        <ol>
+                            <li>Email us at <a href="mailto:feedback@usalotteryresults.com">feedback@usalotteryresults.com</a></li>
+                            <li>Describe your feature idea in detail</li>
+                            <li>Explain how it would improve the app</li>
+                        </ol>
+                        <p>While we can't implement every suggestion, we carefully review all feedback and prioritize features that benefit the most users.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleAnswer(this)">
+                        Can I report a bug or error?
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, please do! Bug reports help us improve the app for everyone.</p>
+                        <p>To report a bug:</p>
+                        <ol>
+                            <li>Email <a href="mailto:support@usalotteryresults.com">support@usalotteryresults.com</a></li>
+                            <li>Subject: "Bug Report"</li>
+                            <li>Include:
+                                <ul>
+                                    <li>What you were doing when the bug occurred</li>
+                                    <li>What you expected to happen</li>
+                                    <li>What actually happened</li>
+                                    <li>Screenshots or screen recordings if possible</li>
+                                    <li>Device and app version info</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Responsible Gaming -->
+            <div class="category">
+                <div class="category-header">
+                    <span class="category-icon">⚠️</span>
+                    <h2>Responsible Gaming</h2>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleAnswer(this)">
+                        What is responsible gaming?
+                    </div>
+                    <div class="faq-answer">
+                        <p>Responsible gaming means playing lottery games in a fun, safe, and controlled manner. Key principles include:</p>
+                        <ul>
+                            <li>Only play with money you can afford to lose</li>
+                            <li>Set a budget and stick to it</li>
+                            <li>Treat it as entertainment, not income</li>
+                            <li>Never chase losses</li>
+                            <li>Don't play if you're stressed or upset</li>
+                            <li>Be aware of the odds (winning is rare)</li>
+                        </ul>
+                        <div class="info-box">
+                            <strong>Remember:</strong> Lottery games should be fun, not a financial strategy.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleAnswer(this)">
+                        Where can I get help with gambling problems?
+                    </div>
+                    <div class="faq-answer">
+                        <p>If you or someone you know may have a gambling problem, help is available:</p>
+                        <div class="warning-box">
+                            <p><strong>National Problem Gambling Helpline</strong></p>
+                            <p><strong>Phone:</strong> 1-800-522-4700 (24/7, free, confidential)</p>
+                            <p><strong>Online:</strong> <a href="https://www.ncpgambling.org" target="_blank">www.ncpgambling.org</a></p>
+                            <p><strong>Text:</strong> Text "HOPE" to 467369</p>
+                        </div>
+                        <p><strong>Warning Signs of Problem Gambling:</strong></p>
+                        <ul>
+                            <li>Spending more than you can afford</li>
+                            <li>Lying about gambling activities</li>
+                            <li>Chasing losses</li>
+                            <li>Gambling when stressed or depressed</li>
+                            <li>Neglecting responsibilities due to gambling</li>
+                            <li>Borrowing money to gamble</li>
+                        </ul>
+                        <p>Don't hesitate to seek help. Support is available and recovery is possible.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleAnswer(this)">
+                        Are there age restrictions?
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes. You must be <strong>18 years or older</strong> to:</p>
+                        <ul>
+                            <li>Use this app</li>
+                            <li>Purchase lottery tickets</li>
+                            <li>Claim lottery prizes</li>
+                        </ul>
+                        <p>Some states may have different age requirements (19 or 21). Always check your state's specific lottery laws.</p>
+                        <div class="warning-box">
+                            <strong>Important:</strong> We do not knowingly collect information from anyone under 18. If you're a parent and believe your child has used this app, please contact us.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Still Have Questions? -->
+            <div class="contact-cta">
+                <h2>Still Have Questions?</h2>
+                <p>Can't find what you're looking for? Our support team is here to help!</p>
+                <a href="mailto:support@usalotteryresults.com">Contact Support</a>
+            </div>
+        </div>
+        
+        <footer>
+            <p>&copy; 2026 USA Lottery Results. All rights reserved.</p>
+            <p>This app is not affiliated with any official state lottery organization.</p>
+            <p style="margin-top: 10px;">
+                <a href="privacy-policy.html" style="color: #fff; margin: 0 10px;">Privacy Policy</a> | 
+                <a href="terms-and-conditions.html" style="color: #fff; margin: 0 10px;">Terms & Conditions</a>
+            </p>
+        </footer>
+    </div>
+    
+    <script>
+        function toggleAnswer(element) {
+            const answer = element.nextElementSibling;
+            const question = element;
+            
+            // Close all other answers
+            document.querySelectorAll('.faq-answer').forEach(ans => {
+                if (ans !== answer) {
+                    ans.classList.remove('active');
+                }
+            });
+            
+            document.querySelectorAll('.faq-question').forEach(q => {
+                if (q !== question) {
+                    q.classList.remove('active');
+                }
+            });
+            
+            // Toggle current answer
+            answer.classList.toggle('active');
+            question.classList.toggle('active');
+        }
+        
+        function searchFAQ() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toLowerCase();
+            const categories = document.querySelectorAll('.category');
+            
+            if (filter === '') {
+                categories.forEach(category => {
+                    category.style.display = 'block';
+                    const items = category.querySelectorAll('.faq-item');
+                    items.forEach(item => {
+                        item.style.display = 'block';
+                    });
+                });
+                return;
+            }
+            
+            categories.forEach(category => {
+                const items = category.querySelectorAll('.faq-item');
+                let categoryHasMatch = false;
+                
+                items.forEach(item => {
+                    const question = item.querySelector('.faq-question').textContent.toLowerCase();
+                    const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+                    
+                    if (question.includes(filter) || answer.includes(filter)) {
+                        item.style.display = 'block';
+                        categoryHasMatch = true;
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+                
+                category.style.display = categoryHasMatch ? 'block' : 'none';
+            });
+        }
+    </script>
+</body>
+</html>
